@@ -21,7 +21,7 @@ ESG scores guide over $35 trillion in global assets — shaping investment flows
 - Are higher ESG scores consistently associated with lower emissions?
 - Which sectors or firms score high but pollute heavily?
 - What does this suggest about ESG as a regulatory or investment tool?
-- 
+  
 ## 🧰 Methodology
 - Fuzzy matching of ESG company names with parent entities in emissions data
 - Log transformation of emissions for normalization
