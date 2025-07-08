@@ -1,5 +1,11 @@
 
 # ESG vs. Emissions: Does Corporate Reputation Match Reality?
+## TL;DR
+- ❓ Question: Do higher ESG environmental scores mean lower emissions?
+- 📊 Method: Public ESG data + CO₂ emissions data (fuzzy matched, cleaned)
+- 📉 Finding: Statistically significant but very weak negative association
+- 🧠 Insight: ESG scores may reflect effort, not outcomes — especially in carbon-heavy sectors
+- 📎 [Full PDF Report](ESG_vs_Emissions_Analysis.pdf)
 
 This project investigates whether high ESG (Environmental, Social, and Governance) scores actually reflect better environmental performance, as measured by carbon emissions. Using real-world data, I analyze patterns across industries to uncover gaps between ESG ratings and emissions output.
 
