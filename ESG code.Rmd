@@ -1,0 +1,142 @@
+---
+title: "ESG vs Emissions Analysis"
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+date: "2025-07-08"
+---
+
+```{r setup, include=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 2. Data Cleaning & Preparation
+
+```{r load-packages}
+install.packages("tidyverse")
+install.packages("fuzzyjoin")
+library(tidyverse)
+library(readr)
+library(fuzzyjoin)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r load-data}
+esg_data <- read_csv("data/data.csv")
+emissions <- read_csv("data/emissions_medium_granularity.csv")
+```
+
+```{r clean-data}
+esg_clean <- esg_data %>%
+  select(
+    name, ticker, industry,
+    environment_score, social_score, governance_score,
+    total_score, total_grade
+  ) %>%
+  filter(!is.na(environment_score))
+# Get the latest year of emissions data per company
+emissions_latest <- emissions %>%
+  group_by(parent_entity) %>%
+  filter(year == max(year)) %>%
+  summarise(total_emissions = sum(total_emissions_MtCO2e, na.rm = TRUE)) %>%
+  ungroup()
+# Merge ESG scores with emissions data
+esg_merged <- esg_clean %>%
+  left_join(emissions_latest, by = c("name" = "parent_entity"))
+glimpse(esg_merged)
+summary(esg_merged$total_emissions)
+#do a fuzzy merge join 
+fuzzy_merged_clean <- fuzzy_merged_clean %>%
+  group_by(name) %>%
+  slice(1) %>%
+  ungroup()
+fuzzy_merged_clean %>%
+  count(name) %>%
+  filter(n > 1) 
+glimpse(fuzzy_merged)
+summary(fuzzy_merged$total_emissions) 
+```
+
+## 3. Exploratory Visualization
+
+```{r scatterplot}
+ggplot(fuzzy_merged_clean, aes(x = environment_score, y = total_emissions)) +
+  geom_point(alpha = 0.6) +
+  scale_y_log10() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(
+    title = "Environmental Score vs. CO₂ Emissions (log scale)",
+    x = "ESG Environmental Score",
+    y = "Total Emissions (log MtCO₂e)"
+  ) +
+  theme_minimal()
+```
+
+```{r check-emissions}
+summary(fuzzy_merged_clean$total_emissions)
+table(is.na(fuzzy_merged_clean$total_emissions))
+table(fuzzy_merged_clean$total_emissions == 0)
+```
+## 4. Correlation and Linear Regression
+
+```{r correlation}
+
+cor.test(fuzzy_merged_clean$environment_score, log10(fuzzy_merged_clean$total_emissions))
+model <- lm(log10(total_emissions) ~ environment_score, data = fuzzy_merged_clean)
+summary(model)
+
+```
+
+```{r log-models}
+model_ln <- lm(log(total_emissions) ~ environment_score, data = fuzzy_merged_clean)
+summary(model_ln)
+
+model_log2 <- lm(log2(total_emissions) ~ environment_score, data = fuzzy_merged_clean)
+summary(model_log2)
+```
+
+```{r social-governance}
+summary(lm(log10(total_emissions) ~ social_score, data = fuzzy_merged_clean))
+summary(lm(log10(total_emissions) ~ governance_score, data = fuzzy_merged_clean))
+
+```
+
+## 5. LOESS Smoother
+
+```{r loess}
+library(ggplot2)
+ggplot(fuzzy_merged_clean, aes(x = environment_score, y = log10(total_emissions))) +
+  geom_point(alpha = 0.4, size = 2) +
+  geom_smooth(method = "loess", color = "red", se = FALSE, span = 0.75) +
+  labs(
+    title = "ESG Environmental Score vs. CO₂ Emissions",
+    subtitle = "Log-transformed emissions with LOESS smoother",
+    x = "Environmental Score",
+    y = "Log₁₀ of CO₂ Emissions (MtCO₂e)"
+  ) +
+  theme_minimal(base_size = 14)
+```
+
+## 6. Diagnostics
+
+```{r diagnostics}
+cor.test(fuzzy_merged_clean$environment_score, 
+         log(fuzzy_merged_clean$total_emissions), 
+         method = "pearson")
+par(mfrow = c(2, 2))
+plot(model_ln)
+```
+
+## 7. Summary of Results
+
+- Slope: -0.0003 → A 1-point increase in environmental score correlates with ~0.03% decrease in CO₂ emissions.
+- p-value: 0.0474 → Statistically significant.
+- R²: ~0.005 → Very weak explanatory power.
+
+The LOESS and residual plots suggest high variance and poor model fit despite statistical significance. ESG scores may capture good intentions or transparency efforts more than actual emissions performance.
+
+## 8. Conclusion
+This analysis finds a statistically significant but substantively weak negative correlation between ESG environmental scores and real carbon emissions. ESG ratings may not reliably reflect actual environmental performance. Investors and regulators should treat ESG scores as supplementary — not definitive — indicators.
