@@ -13,7 +13,7 @@ This project investigates whether high ESG (Environmental, Social, and Governanc
 ESG scores guide over $35 trillion in global assets — shaping investment flows, regulatory frameworks, and corporate strategy. Yet critics argue that ESG scores can be misleading — rewarding companies for disclosure rather than performance. If ESG scores fail to reflect actual environmental impact — such as carbon emissions — the entire foundation of ESG investing may be vulnerable to greenwashing, mispriced risk, and public mistrust. This project investigates whether those concerns are backed by data.
 
 ## 📊 What This Project Does
-- Imports and cleans a dataset of ESG scores and emissions
+- Imports and cleans a dataset of ESG scores and emissions from 25 largest fossil producing companies worldwide
 - Visualizes ESG vs. CO₂ emissions across companies and sectors
 - Identifies industries and firms where ESG scores are misaligned with actual impact
 - Summarizes implications for investors, regulators, and public-sector economists
@@ -35,4 +35,4 @@ ESG scores guide over $35 trillion in global assets — shaping investment flows
 - Correlation analysis and diagnostics (residuals, Q-Q plots, Cook’s distance)
 
 ## 📌 Relevance
-This project sits at the intersection of environmental policy, corporate transparency, and economic analysis. It aims to inform discussions on sustainable finance, greenwashing, and regulatory reform — making it relevant to public-sector analysts, consulting firms, and financial institutions alike.
+This project sits at the intersection of environmental policy, corporate transparency, and economic analysis. It aims to inform discussions on sustainable finance, greenwashing, and regulatory reform — making it relevant to public-sector analysts, consulting firms, and financial institutions alike. While only 25 firms from our ESG dataset matched with verifiable emissions data, this subset includes many of the world’s largest fossil fuel producers — precisely the companies where alignment between ESG scores and actual environmental performance matters most. The limited match rate itself signals a broader issue: ESG scoring systems often operate independently of empirical impact data, raising concerns about comparability and credibility.
