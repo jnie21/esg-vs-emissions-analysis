@@ -7,7 +7,7 @@
 - 🧠 Insight: ESG scores may reflect effort, not outcomes — especially in carbon-heavy sectors
 - 📎 [Full PDF Report](ESG_vs_Emissions_Analysis.pdf)
 
-This project investigates whether high ESG (Environmental, Social, and Governance) scores actually reflect better environmental performance, as measured by carbon emissions. Using real-world data, I analyze patterns across industries to uncover gaps between ESG ratings and emissions output.
+This project examines how ESG environmental scores correlate with actual emissions among the highest-emitting industries, using fossil fuel producers as a critical test case, measured by carbon emissions. Using real-world data, I analyze patterns across industries to identify gaps between ESG ratings and emissions output.
 
 ## 🎯 Why It Matters
 ESG scores guide over $35 trillion in global assets — shaping investment flows, regulatory frameworks, and corporate strategy. Yet critics argue that ESG scores can be misleading — rewarding companies for disclosure rather than performance. If ESG scores fail to reflect actual environmental impact — such as carbon emissions — the entire foundation of ESG investing may be vulnerable to greenwashing, mispriced risk, and public mistrust. This project investigates whether those concerns are backed by data.
