@@ -17,6 +17,10 @@ ESG scores guide over $35 trillion in global assets — shaping investment flows
 - Visualizes ESG vs. CO₂ emissions across companies and sectors
 - Identifies industries and firms where ESG scores are misaligned with actual impact
 - Summarizes implications for investors, regulators, and public-sector economists
+## 🔄 Phase 2: SQL Extension (In Progress)
+- This project is currently being extended using SQL to scale the analysis.
+- Upcoming additions will explore emissions trends, ESG-performance mismatches, and greenwashing risk using structured queries.
+- 📁 Files coming soon: schema.sql, queries.sql, and Phase 2 notes.
 
 ## 📁 Data Source
 - Public Company ESG Ratings Dataset (Kaggle)
