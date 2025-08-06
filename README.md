@@ -5,7 +5,7 @@
 - 📊 Method: Public ESG data + CO₂ emissions data (fuzzy matched, cleaned)
 - 📉 Finding: Statistically significant but very weak negative association
 - 🧠 Insight: ESG scores may reflect effort, not outcomes — especially in carbon-heavy sectors
-- 📎 [📄 View the full PDF report →](ESG_vs_Emissions_Nelly_Nie.pdf)
+- 📎 [📄 Full PDF Report: ESG _ Quantitative Analysis.pdf](./ESG%20_%20Quantitative%20Analysis.pdf)
 
 This project examines how ESG environmental scores correlate with actual emissions among the highest-emitting industries, using fossil fuel producers as a critical test case, measured by carbon emissions. Using real-world data, I analyze patterns across industries to identify gaps between ESG ratings and emissions output.
 
